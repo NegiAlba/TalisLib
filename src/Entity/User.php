@@ -43,9 +43,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastName;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Professional::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $professional;
+
+    public function __toString()
+    {
+        if(!empty($lastName) && !empty($firstName))
+        {
+
+            return "{$this->firstName} {$this->lastName}";
+        }
+
+        return $this->email;
+    }
 
     public function getId(): ?int
     {
@@ -148,6 +164,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getProfessional(): ?Professional
+    {
+        return $this->professional;
+    }
+
+    public function setProfessional(?Professional $professional): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($professional === null && $this->professional !== null) {
+            $this->professional->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($professional !== null && $professional->getUser() !== $this) {
+            $professional->setUser($this);
+        }
+
+        $this->professional = $professional;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}TalisLib - Tous vos rendez-vous au même endroit !{% endblock %}
+{% block title %}TalisLib - Regroup your appointments in ONE application !{% endblock %}
 
 
 {% block header %}
@@ -15,15 +15,16 @@
 {% block body %}
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Bienvenue sur TalisLib</h1>
-        <p class="col-md-8 fs-4">Ici vous pourrez avoir tous vos rendez-vous au même endroit</p>
-        <button class="btn btn-secondary btn-lg" type="button">Découvrez notre catalogue de professionnels !</button>
-        <button class="btn btn-warning btn-lg" type="button">Inscrivez-vous (ou connectez vous)</button>
+        <h1 class="display-5 fw-bold">Welcome to TalisLib</h1>
+        <p class="col-md-8 fs-4">Regroup your appointments in ONE application.</p>
+        <a href="{{path("app_pros_index")}}"><button class="btn btn-secondary btn-lg" type="button">Book our professionnals</button></a>
+        <a href="{{path("app_register")}}"><button class="btn btn-warning btn-lg" type="button">Sign-up</button></a>
+        <a href="{{path("app_login")}}"><button class="btn btn-success btn-lg" type="button">Already have an account ? Log-in</button></a>
       </div>
     </div>
     {% if app.user %}
     <div class="p-4">
-        <button class="btn btn-success btn-lg" type="button">Vous êtes connectés en tant que {{app.user.email}}</button>
+        <button class="btn btn-success btn-lg" type="button">Logged in as {{app.user.email}}</button>
     </div>
     {% endif %}
 {% endblock %}

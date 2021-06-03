@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<section class="container">
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
@@ -20,4 +22,9 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+<div class="mt-3 pt-3 row justify-content-end">
+    <a href="{{path("app_login")}}"><button class="btn btn-warning col-4 offset-8">Already have an account ? Log-in</button></a>
+</div>
+</section>
 {% endblock %}
+

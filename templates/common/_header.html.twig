@@ -1,6 +1,9 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Navbar</a>
+    <a class="navbar-brand" href="{{path("app_default_index")}}">TalisLib</a>
+    {% if app.user %}
+      <a href="app_default_index" class="ml-auto"><button class="btn btn-outline-dark">{{app.user.email}}</button></a>
+    {% endif %}
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
